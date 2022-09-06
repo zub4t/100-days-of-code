@@ -24,10 +24,11 @@ const getQuestion = (callback) => {
     })
 }
 
-export const QuizzForm = () => {
+export const QuizzForm = ({ setR, setW }) => {
   window.document.addEventListener('onload', () => {})
   useEffect(() => {
     if (!question) getQuestion(setQuestion)
+    if (setR) console.log('ok')
   })
   const [question, setQuestion] = useState(undefined)
   const [validate, setValidate] = useState(false)
@@ -46,14 +47,19 @@ export const QuizzForm = () => {
       })
 
     if (correct) {
-      alert('You are correct !! 🎊🎉✨')
+      //alert('You are correct !! 🎊🎉✨')
       getQuestion(setQuestion)
+      console.log(setR)
+      setR()
+    } else {
+      console.log(setW)
+      setW()
     }
   }
 
   return (
     <div>
-      <Question question={question} verify={verify} />
+      <Question className="container" question={question} verify={verify} />
     </div>
   )
 }
