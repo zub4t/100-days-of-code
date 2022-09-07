@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react'
 import '/imports/api/methods'
 import { Meteor } from 'meteor/meteor'
 import { mount } from 'react-mounter'
-import { LeaderBoard } from 'imports/collections/leaderboard'
 
-export default ({ QuizzForm }) => {
+export default ({ QuizzForm, data }) => {
   const [rGuess, setRGuess] = useState(0)
   const [wGuess, setWGuess] = useState(0)
   useEffect(() => {
-    Meteor.call('leaderboard.action', { rGuess, wGuess })
+    if (!data.first) {
+      setRGuess(data.rGuess)
+      setWGuess(data.wGuess)
+      data.first = 1
+    } else {
+      Meteor.call('leaderboard.action', { rGuess, wGuess })
+    }
   })
   return (
     <>
@@ -16,16 +21,14 @@ export default ({ QuizzForm }) => {
         <span style={{ color: 'red' }}>{wGuess}</span>
         <span style={{ color: 'blue' }}>{rGuess}</span>
       </div>
-      {console.log(
-        mount(QuizzForm, {
-          setW: () => {
-            setWGuess(wGuess + 1)
-          },
-          setR: () => {
-            setRGuess(rGuess + 1)
-          },
-        }),
-      )}
+      {mount(QuizzForm, {
+        setW: () => {
+          setWGuess(wGuess + 1)
+        },
+        setR: () => {
+          setRGuess(rGuess + 1)
+        },
+      })}
     </>
   )
 }

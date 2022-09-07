@@ -3,6 +3,8 @@ import { QuizzForm } from './QuizzForm.jsx'
 import Board from './Board.jsx'
 import { LoginWithGithub } from './LoginWithGithub.jsx'
 import { useTracker } from 'meteor/react-meteor-data'
+import LeaderBoard from '../collections/leaderboard'
+
 const main = ({ setR, setW }) => {
   return (
     <>
@@ -14,9 +16,26 @@ const main = ({ setR, setW }) => {
   )
 }
 export const App = () => {
-  const user = useTracker(() => Meteor.user())
-  console.log(user)
+  const { user, data } = useTracker(() => {
+    if (!Meteor.user()) {
+      return { undefined, undefined }
+    }
+    const user = Meteor.user()
+    const handler = Meteor.subscribe('board')
+
+    if (!handler.ready()) {
+      return { undefined, undefined }
+    }
+    let data
+    if (LeaderBoard.find({ userId: user._id }).count() === 0) {
+      data = { userId: user._id, rGuess: 0, wGuess: 0 }
+      return { user, data }
+    } else {
+      data = LeaderBoard.find({ userId: user._id }).fetch()[0]
+      return { user, data }
+    }
+  })
   return (
-    <>{user ? <Board QuizzForm={main}  /> : <LoginWithGithub />}</>
+    <>{user ? <Board QuizzForm={main} data={data} /> : <LoginWithGithub />}</>
   )
 }

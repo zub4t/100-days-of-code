@@ -28,12 +28,11 @@ export const QuizzForm = ({ setR, setW }) => {
   window.document.addEventListener('onload', () => {})
   useEffect(() => {
     if (!question) getQuestion(setQuestion)
-    if (setR) console.log('ok')
+ 
   })
   const [question, setQuestion] = useState(undefined)
   const [validate, setValidate] = useState(false)
   verify = () => {
-    console.log('Verificando')
     let correct = true
     let template = []
     Object.keys(question.correct_answers).forEach((element) => {
@@ -49,10 +48,8 @@ export const QuizzForm = ({ setR, setW }) => {
     if (correct) {
       //alert('You are correct !! 🎊🎉✨')
       getQuestion(setQuestion)
-      console.log(setR)
       setR()
     } else {
-      console.log(setW)
       setW()
     }
   }

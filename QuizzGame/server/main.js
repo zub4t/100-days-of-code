@@ -1,9 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import '/imports/api/methods';
-import { LeaderBoard } from '/imports/collections/leaderboard';
-const SEED_USERNAME = 'meteorite';
-const SEED_PASSWORD = 'password';
+import '../imports/api/methods';
+import '../imports/api/publications';
+
 
 
 
@@ -21,8 +20,8 @@ Meteor.startup(() => {
     ServiceConfiguration.configurations.upsert({ service: 'github' }, {
         $set: {
             loginStyle: 'popup',
-            clientId: 'd849468976a7dcf325d6', // insert your clientId here
-            secret: '068b86ba36b9e627e5ed905d8b338e662b4f9168', // insert your secret here
+            clientId: '4be43e8b16ae5f3bbe75', // insert your clientId here
+            secret: 'e6e4ce302ef0cfab7ef1b4be75a8332b6f475510', // insert your secret here
         },
     });
 });
