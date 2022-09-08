@@ -9,3 +9,7 @@ src="https://slackmojis.com/emojis/7421-typingcat/download" width="30"> </span>.
 today I put my C# XD skills into practice and I realize that I was a little rusty so I didn't do much, more than that I realize that in addition to looking simple, Windows Forms can be quite difficult. Current difficulties are related to background tasks that need to be done.
 I saw an article by MicroSoft showing how to use BackgroundWorkers to do this.<br/> 
 <h2>Visual example</h2>
+
+<p align="center">
+<img src="./ezgif-4-6aa5192019.gif ">
+</p>
