@@ -13,3 +13,6 @@ I saw an article by MicroSoft showing how to use BackgroundWorkers to do this.<b
 <p align="center">
 <img src="./ezgif-4-6aa5192019.gif ">
 </p>
+
+<h3> #2 </h3>
+I want to apologize for my weekend days off I can't do much because my friends and I went to a vacation house
